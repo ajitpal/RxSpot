@@ -1,3 +1,4 @@
+const path = require('path');
 // Learn more https://docs.expo.dev/guides/customizing-metro
 const { getDefaultConfig } = require('expo/metro-config');
 
@@ -12,5 +13,10 @@ config.transformer = {
 
 // Ensure TypeScript extensions are properly resolved
 config.resolver.sourceExts = ['js', 'jsx', 'ts', 'tsx', 'json'];
+
+// Force Metro to resolve expo-modules-core to its compiled JavaScript output
+config.resolver.extraNodeModules = {
+  'expo-modules-core': path.resolve(__dirname, 'node_modules/expo-modules-core/build'),
+};
 
 module.exports = config;
